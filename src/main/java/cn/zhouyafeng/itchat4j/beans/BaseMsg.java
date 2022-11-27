@@ -51,6 +51,9 @@ public class BaseMsg implements Serializable {
 	private String oriContent;
 	private String fileSize;
 
+	/**在群消息的场景下该字段才有效，为群内消息发送者id**/
+	private String subFromUserName;
+
 	public int getSubMsgType() {
 		return subMsgType;
 	}
@@ -289,5 +292,13 @@ public class BaseMsg implements Serializable {
 
 	public void setFileSize(String fileSize) {
 		this.fileSize = fileSize;
+	}
+
+	public String getSubFromUserName() {
+		return subFromUserName;
+	}
+
+	public void setSubFromUserName(String subFromUserName) {
+		this.subFromUserName = subFromUserName;
 	}
 }

@@ -18,7 +18,7 @@ import cn.zhouyafeng.itchat4j.utils.tools.CommonTools;
 
 /**
  * 消息处理中心
- * 
+ *
  * @author https://github.com/yaphone
  * @date 创建时间：2017年5月14日 下午12:47:50
  * @version 1.0
@@ -31,7 +31,7 @@ public class MsgCenter {
 
 	/**
 	 * 接收消息，放入队列
-	 * 
+	 *
 	 * @author https://github.com/yaphone
 	 * @date 2017年4月23日 下午2:30:48
 	 * @param msgList
@@ -52,10 +52,12 @@ public class MsgCenter {
 					core.getGroupIdList().add((m.getString("ToUserName")));
 				}
 				// 群消息与普通消息不同的是在其消息体（Content）中会包含发送者id及":<br/>"消息，这里需要处理一下，去掉多余信息，只保留消息内容
-				if (m.getString("Content").contains("<br/>")) {
-					String content = m.getString("Content").substring(m.getString("Content").indexOf("<br/>") + 5);
-					m.put("Content", content);
-					m.put("groupMsg", true);
+                if (m.getString("Content").contains("<br/>")) {
+                    String content = m.getString("Content").substring(m.getString("Content").indexOf("<br/>") + 5);
+                    String subFromUserName = m.getString("Content").substring(0, m.getString("Content").indexOf(":<br/>"));
+                    m.put("Content", content);
+                    m.put("groupMsg", true);
+                    m.put("subFromUserName", subFromUserName);
 				}
 			} else {
 				CommonTools.msgFormatter(m, "Content");
@@ -114,7 +116,7 @@ public class MsgCenter {
 
 	/**
 	 * 消息处理
-	 * 
+	 *
 	 * @author https://github.com/yaphone
 	 * @date 2017年5月14日 上午10:52:34
 	 * @param msgHandler
