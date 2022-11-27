@@ -1,3 +1,9 @@
+# fork自https://github.com/wxmbaci/itchat4j-uos
+
+## changelog
+2022.11.27 在原有的BaseMsg的基础上增加了subFromUserName，用于记录群聊消息中的发送者id
+
+------------------
 # itchat4j -- 用Java扩展个人微信号的能力
 
 
